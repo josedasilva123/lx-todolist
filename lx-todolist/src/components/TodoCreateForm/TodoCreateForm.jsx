@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const TodoCreateForm = ({addTodoToTodoList}) => {
+export const TodoCreateForm = ({ addTodoToTodoList }) => {
    /* reflexo exato do estado */
    const [formData, setFormData] = useState({
       title: "",
@@ -11,19 +11,25 @@ export const TodoCreateForm = ({addTodoToTodoList}) => {
    const submit = (event) => {
       event.preventDefault();
 
-      if(formData.title !== "" && formData.content !== ""){
+      if (formData.title !== "" && formData.content !== "") {
          addTodoToTodoList(formData);
       } else {
-         alert("Você precisa preencher os campos para enviar o formulário.")
-      }     
-      
+         alert("Você precisa preencher os campos para enviar o formulário.");
+      }
+
       setFormData({
          title: "",
          content: "",
-         category: "educacao",  
-      })
-   }
-
+         category: "educacao",
+      });
+   };
+   
+   /* 
+      espelhamento consiste em vincular o valor referente ao campo no estado com 
+      atributo value da tag HTML (da mais flexibilidade e nos permite criar features 
+      de reset, carregamento de dados e etc)
+   */
+   
    return (
       <form onSubmit={submit} noValidate>
          <input type="text" value={formData.title} onChange={(event) => setFormData({ ...formData, title: event.target.value })} />
